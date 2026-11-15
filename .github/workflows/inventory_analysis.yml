@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'data/**'
+      - 'inventory.csv'
       - 'analyze.py'
       - '.github/workflows/inventory_analysis.yml'
 permissions:
@@ -17,12 +18,12 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: python -m pip install --upgrade pandas polars openpyxl
+        run: python -m pip install --upgrade pandas numpy xlsxwriter
       - name: Analyze inventory exports
         run: python analyze.py
-      - name: Upload reports
+      - name: Upload Excel report
         uses: actions/upload-artifact@v4
         with:
-          name: inventory-analysis-reports
-          path: reports/
+          name: inventory-analysis-report
+          path: reports/inventory_analysis_top100.xlsx
           if-no-files-found: error
