@@ -1,0 +1,1 @@
+# Creating copy from existing blob would require exact contents; content transfer unavailable in this tool.
